@@ -23,8 +23,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
 			(reaction) => reaction.emoji.id == muteEmojiId
 		)?.count // good lord i do NOT miss javascript what the SIGMA is this
 
-		// Use != instead of < or > to prevent multiple mutes for particularly hated persons
-		if (reactionCount != REACTION_THRESHOLD_COUNT) {
+		if (reactionCount < REACTION_THRESHOLD_COUNT) {
 			console.log(`Count at ${reactionCount}`)
 			return // you're safe... for now.
 		}

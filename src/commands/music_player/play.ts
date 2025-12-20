@@ -5,7 +5,7 @@ import {
     TextBasedChannel,
 } from 'discord.js'
 import { config } from '../../config'
-import { channels, players, queues, statuses } from '../../functions/dicts'
+import { channels, players, queues, statuses, vcs } from '../../functions/dicts'
 
 export const data = new SlashCommandBuilder()
     .setName('play')
@@ -16,6 +16,10 @@ export const data = new SlashCommandBuilder()
 
 export async function execute(interaction: CommandInteraction) {
     const guild = interaction.guildId as string
+    
+    if (vcs[guild] == null) {
+        return interaction.reply({ content: 'Not in VC' })
+    }
 
     const { value: youtubeURL } = interaction.options.get('tubeurl', true) as {
         value: string

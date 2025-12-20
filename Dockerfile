@@ -1,9 +1,16 @@
-FROM node:latest
+FROM node:22
 
-RUN mkdir -p /app
 WORKDIR /app
 
-RUN npm install -g pnpm
+COPY package*.json ./
+
+RUN npm install
 
 COPY . .
 
+RUN apt-get update && apt-get install -y \
+  ffmpeg \
+  libsodium-dev \
+  && rm -rf /var/lib/apt/lists/*
+
+CMD ["sh", "-c", "npx prisma generate && npm run start"]

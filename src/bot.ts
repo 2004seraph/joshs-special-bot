@@ -3,6 +3,7 @@ import * as commands from './commands'
 import { isMemberMod } from './common_functions'
 import { config } from './config'
 import { deployCommands } from './deploy-commands'
+import { generateDependencyReport } from '@discordjs/voice';
 
 const client = new Client({
 	intents: [
@@ -17,6 +18,8 @@ const client = new Client({
 })
 export default client
 	; (async (_) => {
+		console.log(generateDependencyReport());
+
 		// Wait for client listeners to be loaded, then add remaining and login
 		await import('./listeners')
 

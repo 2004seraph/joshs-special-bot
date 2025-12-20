@@ -23,5 +23,11 @@ services:
       - db
     # No restart policy
 
+  bot:
+    build: .
+    container_name: discord-bot
+    depends_on:
+      - db
+
 volumes:
   db_data:
