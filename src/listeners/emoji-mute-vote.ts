@@ -2,7 +2,7 @@ import client from '../bot'
 import { getMuteEmojiId } from '../functions/emoji-mute-vote'
 
 const TIMEOUT_MINS = 2
-const REACTION_THRESHOLD_COUNT = 3
+const REACTION_THRESHOLD_COUNT = 4
 
 client.on('messageReactionAdd', async (reaction, user) => {
 	try {
